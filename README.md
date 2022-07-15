@@ -19,7 +19,7 @@ __In [MainWindow.axaml](Samples/MainWindow.axaml) :__
 </StackPanel>
 ```
 
-__In MainWindow.axaml.cs (CodeBehind) :__
+__In [MainWindow.axaml.cs](Samples/MainWindow.axaml.cs) (CodeBehind) :__
 
 ```c#
 private void TextBox_KeyDown(object sender, KeyEventArgs e)
