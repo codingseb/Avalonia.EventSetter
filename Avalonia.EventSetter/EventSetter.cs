@@ -10,11 +10,12 @@ namespace Avalonia.Styling
     /// <remarks>
     /// A <see cref="EventSetter"/> is used to subscribe an event on a <see cref="StyledElement"/> with an handler in the code behind of the current xaml root object.
     /// </remarks>
-    public class EventSetter : AvaloniaObject, ISetter
+    public class EventSetter : ISetter
     {
         private EventInfo eventInfo;
         private MethodInfo methodInfo;
-        Delegate handlerDelegate;
+        private Delegate handlerDelegate;
+        private object handlerContainer;
 
         /// <summary>
         /// The event name on which to subscribe
@@ -25,20 +26,6 @@ namespace Avalonia.Styling
         /// The Handler of the event to connect
         /// </summary>
         public string Handler { get; set; }
-
-        /// <summary>
-        /// The DirectProperty for the object that implement the handler
-        /// </summary>
-        public static readonly DirectProperty<EventSetter, object> HandlerContainerProperty = AvaloniaProperty.RegisterDirect<EventSetter, object>(
-            nameof(HandlerContainer),
-            o => o.HandlerContainer,
-            (o, value) => o.HandlerContainer = value,
-            defaultBindingMode: Data.BindingMode.OneTime);
-
-        /// <summary>
-        /// The object that implement the handler
-        /// </summary>
-        public object HandlerContainer { get; set; }
 
         /// <summary>
         /// Constructor
@@ -56,7 +43,7 @@ namespace Avalonia.Styling
         {
             Event = eventName;
             Handler = handler;
-            HandlerContainer = handlerContainer;
+            this.handlerContainer = handlerContainer;
         }
 
         /// <inheritdoc/>
@@ -74,9 +61,9 @@ namespace Avalonia.Styling
                 throw new InvalidOperationException($"{nameof(EventSetter)}.{nameof(Handler)} must be set.");
             }
 
-            if (HandlerContainer is null)
+            if (handlerContainer is null)
             {
-                throw new InvalidOperationException($"{nameof(EventSetter)}.{nameof(HandlerContainer)} is null.");
+                throw new InvalidOperationException($"{nameof(EventSetter)}.{nameof(handlerContainer)} is null.");
             }
 
             eventInfo ??= target.GetType().GetEvent(Event);
@@ -86,14 +73,14 @@ namespace Avalonia.Styling
                 throw new InvalidOperationException($"Can not find an event named [{Event}] on the styled Element {target}");
             }
 
-            methodInfo ??= HandlerContainer.GetType().GetMethod(Handler, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+            methodInfo ??= handlerContainer.GetType().GetMethod(Handler, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy);
 
             if(methodInfo is null)
             {
-                throw new InvalidOperationException($"Can not find a method named [{Handler}] on the object {HandlerContainer}");
+                throw new InvalidOperationException($"Can not find a method named [{Handler}] on the object {handlerContainer}");
             }
 
-            handlerDelegate ??= Delegate.CreateDelegate(eventInfo.EventHandlerType, HandlerContainer, methodInfo);
+            handlerDelegate ??= Delegate.CreateDelegate(eventInfo.EventHandlerType, handlerContainer, methodInfo);
 
             return new EventSetterInstance(target, eventInfo, handlerDelegate);
         }
@@ -105,9 +92,9 @@ namespace Avalonia.Styling
         /// <returns></returns>
         public object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (serviceProvider is IRootObjectProvider rootObjectProvider && HandlerContainer == null)
+            if (serviceProvider is IRootObjectProvider rootObjectProvider && handlerContainer == null)
             {
-                HandlerContainer = rootObjectProvider.RootObject;
+                handlerContainer = rootObjectProvider.RootObject;
             }
 
             return this;
