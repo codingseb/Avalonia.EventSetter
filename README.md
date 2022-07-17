@@ -1,5 +1,7 @@
 # Avalonia.EventSetter
 
+As AvaloniaUI for now do not have an `EventSetter` like in WPF in styles. This package try to replicate the way `EventSetter` of WPF work in AvaloniaUI. 
+
 ## Getting started
 
 __Install the nuget__
@@ -43,3 +45,9 @@ private void TextBox_KeyDown(object sender, KeyEventArgs e)
   // What you want to do on textbox key down
 }
 ```
+
+## Known issue
+
+As `Event` and `Handler` properties on the `EventSetter` are string intellisense do not work. You need to know the name of the event and the handler you want to use. also the handler must have the good signature in code behind.
+
+As the subscribe and unsubscribe of the event is done with `Reflection` it can be slow on a large set of `StyleElements`
