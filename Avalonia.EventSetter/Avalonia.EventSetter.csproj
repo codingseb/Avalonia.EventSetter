@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
@@ -12,11 +12,11 @@
 	<Description>To add EventSetter to Avalonia UI (usable in Style Like in WPF)</Description>
 	<PackageId>CodingSeb.$(AssemblyName)</PackageId>
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
-
+	
   <ItemGroup>
-    <None Include="..\README.md">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
