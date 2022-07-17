@@ -6,7 +6,21 @@
     <Nullable>disable</Nullable>
 	<LangVersion>latest</LangVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Authors>CodingSeb</Authors>
+	<RepositoryUrl>https://github.com/codingseb/Avalonia.EventSetter</RepositoryUrl>
+	<PackageTags>avalonia;avaloniaui;xaml-style;axaml</PackageTags>
+	<Description>To add EventSetter to Avalonia UI (usable in Style Like in WPF)</Description>
+	<PackageId>CodingSeb.$(AssemblyName)</PackageId>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 	
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.16" />
