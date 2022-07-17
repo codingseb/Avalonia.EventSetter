@@ -23,6 +23,6 @@ __In [MainWindow.axaml.cs](Samples/MainWindow.axaml.cs) (CodeBehind) :__
 ```c#
 private void TextBox_KeyDown(object sender, KeyEventArgs e)
 {
-  // What you want to do on textbox click
+  // What you want to do on textbox key down
 }
 ```
