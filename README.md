@@ -46,8 +46,10 @@ private void TextBox_KeyDown(object sender, KeyEventArgs e)
 }
 ```
 
-## Known issue
+## Known issues
 
 As `Event` and `Handler` properties on the `EventSetter` are string intellisense do not work. You need to know the name of the event and the handler you want to use. also the handler must have the good signature in code behind.
 
 As the subscribe and unsubscribe of the event is done with `Reflection` it can be slow on a large set of `StyleElements`
+
+Attached events re not supported for now.
