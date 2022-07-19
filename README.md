@@ -52,4 +52,4 @@ As `Event` and `Handler` properties on the `EventSetter` are string intellisense
 
 As the subscribe and unsubscribe of the event is done with `Reflection` it can be slow on a large set of `StyleElements`
 
-Attached events re not supported for now.
+Attached events are not supported for now.
