@@ -11,7 +11,7 @@ dotnet add package CodingSeb.Avalonia.EventSetter
 ```
 
 __For the designer__  
-To make the `EventSetter` recognize by the designer you need to add the following line somewhere it's called by the designer. Example in [App.axaml.cs](Samples/App.axaml.cs)
+To make the `EventSetter` recognized by the designer you need to add the following line somewhere it's called by the designer. Example in [App.axaml.cs](Samples/App.axaml.cs)
 
 ```c#
 GC.KeepAlive(typeof(Avalonia.Styling.EventSetter).Assembly);
