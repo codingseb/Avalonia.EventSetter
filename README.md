@@ -1,6 +1,6 @@
 # Avalonia.EventSetter
 
-| :warning: Not working anymore from version 11 of Avalonia as needed Avalonia interfaces and base classes are now internal. As an alternative, you can try [Avalonia Behaviors](https://github.com/AvaloniaUI/Avalonia.Xaml.Behaviors)
+| :warning: Not working anymore from version 11 of Avalonia as needed Avalonia interfaces and base classes are now internal. As an alternative, you can try [Avalonia Behaviors](https://github.com/AvaloniaUI/Avalonia.Xaml.Behaviors) See #1 and [Custom Style Setter](https://github.com/AvaloniaUI/Avalonia/discussions/11004)
 | --- |
 
 As AvaloniaUI for now do not have an `EventSetter` like in WPF in styles. This package try to replicate the way `EventSetter` of WPF work in AvaloniaUI. 
